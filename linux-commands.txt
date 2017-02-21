@@ -1,0 +1,11 @@
+Find Commands
+==============
+
+Files modified in last 30 mins
+find ~ -mmin -30
+
+Files with size 500-1024 MB
+find ~ -size +500M -size -1024M
+
+Find all files access in last 7 days
+find ~ -atime -7
