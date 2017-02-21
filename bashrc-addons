@@ -1,0 +1,64 @@
+#navi settings begins----------------------------
+export GIT_EDITOR=vi
+
+#--show git branch in prompt (on right hand side)---#
+source /usr/lib/git-core/git-sh-prompt
+export GIT_PS1_SHOWDIRTYSTATE=true
+export PS1="\[\033[36m\][\!][\t] \[\033[1;33m\]\u\[\033[0m\]@\h:\[\033[36m\][\w]:\[\033[0m\]\$(__git_ps1) "
+#---------------------------------------------------#
+
+alias ..='cd ..'
+alias vi='gvim'
+
+alias ..='cd ..'
+
+function cd() {
+    builtin cd "$*" && ls
+}
+gs() {
+    git status
+}
+
+gc() {
+    git commit
+}
+gd() {
+    git diff
+}
+gb() {
+    git branch
+}
+gp() {
+    git push
+}
+
+git_details() {
+    cat ~/.netrc && git config --list
+}
+
+network_restart() {
+  service network-manager stop
+  rm /var/lib/NetworkManager/NetworkManager.state
+  service network-manager start
+}
+
+set nobackup
+set nowritebackup
+set noswapfile 
+set noundofile 
+
+# git commit push all modified files
+gcpa() {
+	echo "Commit Message: $1"
+
+	echo "Commiting.................."
+	git commit -am "$1"
+
+	echo "Pushing...................."
+	git push
+
+	echo "Done......................."
+}
+source /usr/local/bin/virtualenvwrapper.sh
+export PIP_VIRTUALENV_BASE=~/virtualenvs
+export WORKON_HOME=~/.virtualenvs
